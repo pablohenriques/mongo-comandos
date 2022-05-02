@@ -1,0 +1,16 @@
+
+
+db.autores.update(
+    {"nome": "Gabriel Ferreira"},
+    {"$set": {
+            artigos: [
+                {
+                    "slug": "projeto-caelum-nas-faculdades",
+                    "titulo": "Projeto Caelum nas Faculdades",
+                    "conteudo": "Lorem Ipsum",
+                    "dataCriado": ISODate("2019-06-04"),
+                }
+            ]
+        }
+    }
+);

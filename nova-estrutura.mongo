@@ -1,0 +1,14 @@
+db.artigos.insertOne({
+        "autor": {
+            "nome": "Gabriel Ferreira",
+            "descricao": "Dev, instrutor e criador de conteudo",
+            "email": "gabs@caelum.com.br",
+            "senha": "gabs1234"
+        },
+        "slug": "projeto-caelum-nas-faculdades",
+        "titulo": "Projeto Caelum nas Faculdades",
+        "conteudo": "Lorem Ipsum",
+        "dataCriado": ISODate("2019-06-04"),
+});
+
+db.artigos.find({ "slug": "projeto-caelum-nas-faculdades"});

@@ -1,0 +1,57 @@
+
+db.infoAutores.insertOne({
+    "nome": "Yan",
+    "email": "y@y.com",
+    "senha": "y1234",
+    "descricao": "Instrutor e Dev na Alura"
+});
+
+var autorInfo = db.infoAutores.findOne({
+    "email": "y@y.com"
+});
+
+db.artigos.insertOne({
+    "autor": {
+        "nome": autorInfo.nome,
+        "descricao": autorInfo.descricao,
+        "id_info": autorInfo._id
+    },
+    "slug": "dicas-politicas-de-senha",
+    "titulo": "Algumas dicas importantes sobre politicas de senha",
+    "conteudo": "lorem ipsum",
+    "dataCriado": ISODate("2018-07-18"),
+    "categorias": [ "Arquitetura", "Programação" ],
+    "comentarios": []
+});
+
+
+
+var documento = db.artigos.findOneAndUpdate(
+    {"slug": "dicas-politicas-de-senha"},
+    {
+        "$push": {
+            "comentarios": {
+                "$each": [
+                    {
+                        "nome": "Henrique",
+                        "email": "h@h.com",
+                        "texto": "Excelente artigo",
+                        "data": ISODate("2019-09-24")
+                    }
+                ],
+                "$position": 0
+            }
+        }
+    }
+
+);
+
+db.comentarios.insertOne(
+    { 
+        "id_artigo": documento._id,
+        "nome": "Henrique",
+        "email": "h@h.com",
+        "texto": "Excelente artigo",
+        "data": ISODate("2019-09-24")
+    }
+);
